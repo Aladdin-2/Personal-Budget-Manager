@@ -24,6 +24,7 @@ public class IncomeService {
     private final BudgetRepository budgetRepository;
     private final IncomeMapper incomeMapper;
     private static final Logger logger = LoggerFactory.getLogger(IncomeService.class);
+    private final EmailService mailSender;
 
     private Budget getExistingBudget(Integer budgetId) {
         return budgetRepository.findById(budgetId)
@@ -112,4 +113,6 @@ public class IncomeService {
         incomeRepository.deleteAll();
         incomeRepository.resetAutoIncrement();
     }
+
+
 }

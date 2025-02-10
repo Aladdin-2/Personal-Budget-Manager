@@ -35,3 +35,7 @@ spring:
           auth: true
           starttls:
             enable: true
+
+email:
+  toEmail: ${TO_EMAIL}
+  fromEmail: ${FROM_EMAIL}
