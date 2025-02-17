@@ -36,7 +36,6 @@ public class UserService {
 
         user.setPassword(encryptionService.decrypt(user.getPassword()));
         return user;
-
     }
 }
 

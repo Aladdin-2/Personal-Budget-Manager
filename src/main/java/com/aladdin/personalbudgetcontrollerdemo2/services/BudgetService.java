@@ -12,7 +12,6 @@ import com.aladdin.personalbudgetcontrollerdemo2.model.enums.TypeOfExpense;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -61,7 +60,7 @@ public class BudgetService {
                 .collect(Collectors.groupingBy(Expense::getCategory, Collectors.summingDouble(Expense::getAmount)));
     }
 
-    @Scheduled(cron = "0 * * * * ?")
+    // @Scheduled(cron = "0 * * * * ?")
     public void checkBudgetAmount() {
         List<Budget> allBudgets = budgetRepository.findAll();
         List<Budget> list = allBudgets.stream().filter(budget -> (budget.getWallet() < 0 || budget.getWallet() == 0) && !sentBudgetIds.contains(budget.getId())).toList();
