@@ -10,9 +10,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.rmi.AlreadyBoundException;
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -21,9 +18,6 @@ public class UserService {
     private final UserRepository userRepository;
     private final EncryptionService encryptionService;
     private final ConfirmationEmailServiceImpl confirmationEmailService;
-
-
-
 
 
     public void loginUser(ResponseUserDto userDto) throws Exception {
