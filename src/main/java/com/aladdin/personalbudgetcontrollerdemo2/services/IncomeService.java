@@ -10,8 +10,7 @@ import com.aladdin.personalbudgetcontrollerdemo2.model.dto.ResponseIncomeDto;
 import com.aladdin.personalbudgetcontrollerdemo2.model.enums.SourceOfIncome;
 import com.aladdin.personalbudgetcontrollerdemo2.utils.DateTimeUtil;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -19,12 +18,11 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class IncomeService {
     private final IncomeRepository incomeRepository;
     private final BudgetRepository budgetRepository;
     private final IncomeMapper incomeMapper;
-    private static final Logger logger = LoggerFactory.getLogger(IncomeService.class);
-    private final EmailService mailSender;
 
     private Budget getExistingBudget(Integer budgetId) {
         return budgetRepository.findById(budgetId)
@@ -46,7 +44,7 @@ public class IncomeService {
         updateBudgetWallet(budget, income.getAmount());
         income.setBudget(budget);
         income = incomeRepository.save(income);
-        logger.info("Expense added: {}", income);
+        log.info("Expense added: {}", income);
         return toResponseIncomeDto(income);
     }
 
@@ -105,7 +103,7 @@ public class IncomeService {
     }
 
     public void deleteById(Integer id) {
-        logger.info("Income deleted: {}", id);
+        log.info("Income deleted: {}", id);
         incomeRepository.deleteById(id);
     }
 

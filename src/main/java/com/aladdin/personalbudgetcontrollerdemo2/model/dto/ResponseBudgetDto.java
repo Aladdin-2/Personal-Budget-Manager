@@ -2,9 +2,6 @@ package com.aladdin.personalbudgetcontrollerdemo2.model.dto;
 
 import com.aladdin.personalbudgetcontrollerdemo2.dao.entity.Expense;
 import com.aladdin.personalbudgetcontrollerdemo2.dao.entity.Income;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,5 +19,5 @@ public class ResponseBudgetDto {
     private String budgetName;
     private LocalDateTime walletChangeDate;
     private List<Expense> expenses;
-    private List<Income> incomes ;
+    private List<Income> incomes;
 }

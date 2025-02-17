@@ -10,6 +10,7 @@ import com.aladdin.personalbudgetcontrollerdemo2.model.dto.ResponseExpenseDto;
 import com.aladdin.personalbudgetcontrollerdemo2.model.enums.TypeOfExpense;
 import com.aladdin.personalbudgetcontrollerdemo2.utils.DateTimeUtil;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,12 +21,11 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ExpenseService {
     private final ExpenseRepository expenseRepository;
     private final BudgetRepository budgetRepository;
     private final ExpenseMapper expenseMapper;
-    private static final Logger logger = LoggerFactory.getLogger(ExpenseService.class);
-    private final ModelMapper modelMapper;
 
 
     public Budget getExistingBudget(Integer budgetId) {
@@ -47,7 +47,7 @@ public class ExpenseService {
         Budget budget = getExistingBudget(expense.getBudget().getId());
         updateBudgetWallet(budget, expense.getAmount());
         expense.setBudget(budget);
-        Expense save = expenseRepository.save(expense);
+        expenseRepository.save(expense);
         return toResponseExpenseDto(expense);
     }
 
@@ -106,7 +106,7 @@ public class ExpenseService {
 
     public void deleteById(Integer id) {
         expenseRepository.deleteById(id);
-        logger.info("Expense deleted: {}", id);
+        log.info("Expense deleted: {}", id);
     }
 
     public void deleteAllExpense() {

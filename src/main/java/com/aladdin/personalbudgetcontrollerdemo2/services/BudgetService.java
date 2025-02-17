@@ -5,6 +5,7 @@ import com.aladdin.personalbudgetcontrollerdemo2.dao.entity.Budget;
 import com.aladdin.personalbudgetcontrollerdemo2.dao.entity.Expense;
 import com.aladdin.personalbudgetcontrollerdemo2.dao.entity.Income;
 import com.aladdin.personalbudgetcontrollerdemo2.dao.repository.BudgetRepository;
+import com.aladdin.personalbudgetcontrollerdemo2.email.impl.SimpleEmailServiceImpl;
 import com.aladdin.personalbudgetcontrollerdemo2.model.dto.ResponseBudgetDto;
 import com.aladdin.personalbudgetcontrollerdemo2.model.enums.SourceOfIncome;
 import com.aladdin.personalbudgetcontrollerdemo2.model.enums.TypeOfExpense;
@@ -26,7 +27,7 @@ import java.util.stream.Collectors;
 public class BudgetService {
     private final BudgetRepository budgetRepository;
     private final BudgetMapper budgetMapper;
-    private final EmailService emailService;
+    private final SimpleEmailServiceImpl simpleEmailServiceImpl;
     private final Set<Integer> sentBudgetIds = new HashSet<>();
 
     @Value("${email.toEmail}")
@@ -73,7 +74,7 @@ public class BudgetService {
     public void emailSender(String text) {
         String subject = "WARNING!";
         FileSystemResource imageFile = new FileSystemResource(new File("C:/Users/Asus/Downloads/for budget management..jpg"));
-        emailService.sendEmail(toEmail, subject, text, imageFile);
+        simpleEmailServiceImpl.sendEmail(toEmail, subject, text, imageFile);
     }
 
     public void deleteAllBudget() {

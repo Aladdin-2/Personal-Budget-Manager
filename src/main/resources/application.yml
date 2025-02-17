@@ -2,7 +2,7 @@ spring:
   application:
     name: demo-book-site
   datasource:
-    url: jdbc:mysql://localhost:3306/budget_ management_api_demo2
+    url: jdbc:mysql://localhost:3306/budget_management_api_demo2
     username: ${USERNAME}
     password: ${PASSWORD}
   jpa:
@@ -39,3 +39,8 @@ spring:
 email:
   toEmail: ${TO_EMAIL}
   fromEmail: ${FROM_EMAIL}
+
+secret:
+  key: ${KEY}
+
+ALGORITHM: ${ALGORITHM}
